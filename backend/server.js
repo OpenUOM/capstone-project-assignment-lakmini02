@@ -2,10 +2,15 @@ const express = require("express");
 const {
     dbinitialize,
     readTeachers,
+    readStudents,
     readTeacherInfo,
+    readStudentInfo,
     addTeacher,
-    deleteTeacher
-
+    addStudent,
+    updateTeacher,
+    updateStudent,
+    deleteTeacher,
+    deleteStudent
 } = require("./database.js");
 
 const app = express();
