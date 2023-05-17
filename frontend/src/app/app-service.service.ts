@@ -6,6 +6,9 @@ import { environment } from './../environments/environment';
   providedIn: 'root'
 })
 export class AppServiceService {
+  initializeDB() {
+    throw new Error('Method not implemented.');
+  }
 
   readonly ROOT_URL;
   
