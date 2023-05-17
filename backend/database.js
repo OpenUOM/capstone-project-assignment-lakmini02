@@ -1,4 +1,4 @@
-const dbConnection = require("./sqlite");
+const dbConnection  = require("./sqlite");
 
 dbConnection
   .getDbConnection()
@@ -23,7 +23,7 @@ const dbinitialize = async () => {
 }
 
 const readTeachers = async () => {
-    const sql = `SELECT * FROM teacher`
+    const sql = 'SELECT * FROM teacher'
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql)
@@ -37,7 +37,7 @@ const readTeachers = async () => {
 }
 
 const readTeacherInfo = async (id) => {
-    const sql = `SELECT * FROM teacher WHERE id = ?`
+    const sql = 'SELECT * FROM teacher WHERE id = ?'
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql, [id])
@@ -51,7 +51,7 @@ const readTeacherInfo = async (id) => {
 }
 
 const addTeacher = async (id, name, age) => {
-    const sql = `INSERT INTO teacher(id,name,age) values (?, ?, ?)`
+    const sql = 'INSERT INTO teacher(id,name,age) values (?, ?, ?)'
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql, [id, name, age])
@@ -64,8 +64,9 @@ const addTeacher = async (id, name, age) => {
     });
 }
 
+
 const updateTeacher = async (name, age, id) => {
-    const sql = `UPDATE teacher SET name=?, age=? WHERE id=?`
+    const sql = 'UPDATE teacher SET name=?, age=? WHERE id=?'
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql, [name, age, id])
@@ -79,7 +80,7 @@ const updateTeacher = async (name, age, id) => {
 }
 
 const deleteTeacher = async (id) => {
-    const sql = `DELETE FROM teacher WHERE id = ?`
+    const sql = 'DELETE FROM teacher WHERE id = ?'
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql, [id])
@@ -93,12 +94,12 @@ const deleteTeacher = async (id) => {
 }
 
 const readStudents = async () => {
-    const sql = `SELECT * FROM dummyData`
+    const sql = 'SELECT * FROM student'
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql)
-            .then((data) => {
-                resolve(data);
+            .then((students) => {
+                resolve(students);
             })
             .catch((error) => {
                 reject(error);
@@ -107,12 +108,12 @@ const readStudents = async () => {
 }
 
 const readStudentInfo = async (id) => {
-    const sql = `SELECT * FROM dummyData`
+    const sql = 'SELECT * FROM student WHERE id = ?'
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql)
-            .then((data) => {
-                resolve(data);
+            .raw(sql, [id])
+            .then((student) => {
+                resolve(student);
             })
             .catch((error) => {
                 reject(error);
@@ -120,13 +121,14 @@ const readStudentInfo = async (id) => {
     });
 }
 
-const addStudent = async (id, name, age, religion) => {
-    const sql = `SELECT * FROM dummyData`
+
+const addStudent = async (id, name, age, hometown) => {
+    const sql = 'INSERT INTO student(id, name, age, hometown) VALUES (?, ?, ?, ?)'
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql)
-            .then((data) => {
-                resolve(data);
+            .raw(sql, [id, name, age, hometown])
+            .then(() => {
+                resolve({status: "Successfully inserted Student"});
             })
             .catch((error) => {
                 reject(error);
@@ -134,13 +136,13 @@ const addStudent = async (id, name, age, religion) => {
     });
 }
 
-const updateStudent = async (name, age, religion, id) => {
-    const sql = `SELECT * FROM dummyData`
+const updateStudent = async (name, age, hometown, id) => {
+    const sql = 'UPDATE student SET name=?, age=?, hometown=? WHERE id=?'
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql)
-            .then((data) => {
-                resolve(data);
+            .raw(sql, [name, age, hometown, id])
+            .then(() => {
+                resolve({status: "Successfully updated Student"});
             })
             .catch((error) => {
                 reject(error);
@@ -149,18 +151,19 @@ const updateStudent = async (name, age, religion, id) => {
 }
 
 const deleteStudent = async (id) => {
-    const sql = `SELECT * FROM dummyData`
+    const sql = 'DELETE FROM student WHERE id = ?'
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql)
-            .then((data) => {
-                resolve(data);
+            .raw(sql, [id])
+            .then(() => {
+                resolve({status: "Successfully deleted Student"});
             })
             .catch((error) => {
                 reject(error);
             });
     });
 }
+
 
 module.exports = {
     readTeachers,
