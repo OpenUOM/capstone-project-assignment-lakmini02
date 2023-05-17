@@ -1,19 +1,12 @@
-import express from "express";
-import bodyParser from "body-parser";
-import {
-  readTeachers,
-  readStudents,
-  addStudent,
-  addTeacher,
-  deleteTeacher,
-  deleteStudent,
-  readStudentInfo,
-  readTeacherInfo,
-  updateStudent,
-  updateTeacher,
-  dbinitialize
+const express = require("express"); 
+const {
+    dbinitialize,
+    readTeachers,
+    readTeacherInfo,
+    addTeacher,
+    deleteTeacher
 
-} from "./database.js";
+} = require("./database.js");
 
 const app = express();
 const bodyParser = require  ("body-parser");

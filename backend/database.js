@@ -1,14 +1,14 @@
 const dbConnection = require("./sqlite");
 
 dbConnection
-    .getDbConnection()
-    .then((db) => {
-        init(db);
-    })
-    .catch((err) => {
-        console.log(err);
-        throw err;
-    });
+  .getDbConnection()
+  .then((db) => {
+    init(db);
+  })
+  .catch((err) => {
+    console.log(err);
+    throw err;
+  });
 
 let _db;
 
@@ -164,16 +164,9 @@ const deleteStudent = async (id) => {
 
 
 module.exports = {
-    readTeachers,
-    readStudents,
-    addStudent,
     addTeacher,
-    deleteTeacher,
-    deleteStudent,
-    readStudentInfo,
+    readTeachers,
     readTeacherInfo,
-    updateStudent,
     updateTeacher,
-    dbinitialize
-
-};
+    deleteTeacher
+}
